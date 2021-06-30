@@ -1,5 +1,6 @@
-package com.github.koxsosen.lightmotd;
+package com.github.koxsosen.lightmotd.serburping;
 
+import com.github.koxsosen.lightmotd.LightMOTD;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.api.proxy.server.ServerPing;

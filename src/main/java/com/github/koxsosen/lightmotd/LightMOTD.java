@@ -1,5 +1,7 @@
 package com.github.koxsosen.lightmotd;
 
+import com.github.koxsosen.lightmotd.config.ConfigManager;
+import com.github.koxsosen.lightmotd.serburping.ServerPinger;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
