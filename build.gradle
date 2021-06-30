@@ -1,4 +1,5 @@
 plugins {
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
     id 'java'
 }
 
@@ -27,6 +28,7 @@ repositories {
 dependencies {
     compileOnly 'com.velocitypowered:velocity-api:1.1.8'
     annotationProcessor 'com.velocitypowered:velocity-api:1.1.8'
+    implementation 'net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT'
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens

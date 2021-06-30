@@ -74,6 +74,11 @@ public class ConfigManager {
                     .setValue(10)
                     .setComment("The current player count which will be shown. Set it to 0 to disable.");
         }
+        if (configNode.getNode("LightMOTD", "text").isVirtual()) {
+            configNode.getNode("LightMOTD", "text")
+                    .setValue("This is the default MOTD of LightMOTD.")
+                    .setComment("This is where you set the MOTD text which will be shown. Set to empty to disable it.");
+        }
     }
 
     public int maxplayers() {
@@ -94,6 +99,16 @@ public class ConfigManager {
             e.printStackTrace();
         }
         return currpl;
+    }
+
+    public String textmotd() {
+        String txtmotd = "";
+        try {
+            txtmotd = configNode.getNode("LightMOTD", "text").getString();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return txtmotd;
     }
 
 

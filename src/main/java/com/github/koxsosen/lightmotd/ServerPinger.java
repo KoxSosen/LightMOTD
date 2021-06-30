@@ -3,6 +3,7 @@ package com.github.koxsosen.lightmotd;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.api.proxy.server.ServerPing;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 
 public class ServerPinger {
 
@@ -16,12 +17,21 @@ public class ServerPinger {
     public void onServerPing(ProxyPingEvent event) {
 
         final ServerPing.Builder ping = event.getPing().asBuilder();
-
-        ping.onlinePlayers(lightMOTD.getConfig().currentplayers()); // set from config
-        ping.maximumPlayers(lightMOTD.getConfig().maxplayers()); // set from config
-
-        event.setPing(ping.build());
-
+        try {
+            ping.onlinePlayers(lightMOTD.getConfig().currentplayers());
+            if (lightMOTD.getConfig().currentplayers() == 0) {
+                return;
+            }
+            ping.maximumPlayers(lightMOTD.getConfig().maxplayers());
+            if (lightMOTD.getConfig().maxplayers() == 0) {
+                return;
+            }
+            ping.description(MiniMessage.markdown().parse(lightMOTD.getConfig().textmotd()));
+            if (lightMOTD.getConfig().textmotd() == null) {
+                return;
+            }
+        } finally {
+            event.setPing(ping.build());
+        }
     }
-
 }
