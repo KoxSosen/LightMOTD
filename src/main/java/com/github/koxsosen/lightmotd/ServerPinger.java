@@ -22,16 +22,22 @@ public class ServerPinger {
             if (lightMOTD.getConfig().currentplayers() == 0) {
                 return;
             }
-            ping.maximumPlayers(lightMOTD.getConfig().maxplayers());
-            if (lightMOTD.getConfig().maxplayers() == 0) {
-                return;
-            }
-            ping.description(MiniMessage.markdown().parse(lightMOTD.getConfig().textmotd()));
-            if (lightMOTD.getConfig().textmotd() == null) {
-                return;
-            }
         } finally {
-            event.setPing(ping.build());
+            try {
+                ping.maximumPlayers(lightMOTD.getConfig().maxplayers());
+                if (lightMOTD.getConfig().maxplayers() == 0) {
+                    return;
+                }
+            } finally {
+                try {
+                    ping.description(MiniMessage.markdown().parse(lightMOTD.getConfig().textmotd()));
+                    if (lightMOTD.getConfig().textmotd() == null) {
+                        return;
+                    }
+                } finally {
+                    event.setPing(ping.build());
+                }
+            }
         }
     }
 }

@@ -68,16 +68,17 @@ public class ConfigManager {
     private void pluginConf(String fileName) {
         if (configNode.getNode("LightMOTD", "playercount").isVirtual()) {
             configNode.getNode("LightMOTD", "playercount", "max-players")
-                    .setValue(5)
+                    .setValue(0)
                     .setComment("The max amount of players which will be shown. Set it to 0 to disable");
             configNode.getNode("LightMOTD", "playercount", "current-players")
-                    .setValue(10)
+                    .setValue(0)
                     .setComment("The current player count which will be shown. Set it to 0 to disable.");
         }
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
             configNode.getNode("LightMOTD", "text")
-                    .setValue("This is the default MOTD of LightMOTD.")
-                    .setComment("This is where you set the MOTD text which will be shown. Set to empty to disable it.");
+                    .setValue("<color:#FF5555>This is the default <underlined><bold>MOTD</bold></underlined> of **LightMOTD.** /n This is a new line :P")
+                    .setComment("This is where you set the MOTD text which will be shown. Set to empty to disable it.")
+                    .setComment("It uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!. It alo accepts basic MARKDOWN features.");
         }
     }
 

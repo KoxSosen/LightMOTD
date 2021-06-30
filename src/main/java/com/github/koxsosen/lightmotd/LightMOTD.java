@@ -14,7 +14,7 @@ import java.nio.file.Path;
         id = "lightmotd",
         name = "LightMOTD",
         version = "@version@",
-        description = "Lightweight motd plugin for Velocity.",
+        description = "Lightweight MOTD plugin for Velocity.",
         authors = {"KoxSosen"}
 )
 public class LightMOTD {
@@ -33,12 +33,9 @@ public class LightMOTD {
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        logger.info("Loading LightMOTD");
         server.getEventManager().register(this, new ServerPinger(LightMOTD.this));
-        logger.info("Registered ServerPinger");
-        logger.info("Loading config");
         this.config = new ConfigManager(configDirectory, "LightMOTD.conf", logger, server);
-        logger.info("Config loaded");
+        logger.info("Successfully loaded LightMOTD.");
     }
 
     public ConfigManager getConfig() {
