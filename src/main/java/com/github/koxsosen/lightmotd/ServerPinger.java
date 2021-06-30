@@ -11,8 +11,7 @@ public class ServerPinger {
 
         final ServerPing.Builder ping = event.getPing().asBuilder();
 
-
-        ping.onlinePlayers(10); // set from config
+        ping.onlinePlayers(new LightMOTD().getConfig().maxplayers()); // set from config
         ping.maximumPlayers(10); // set from config
 
         event.setPing(ping.build());
