@@ -62,12 +62,17 @@ public class ConfigManager {
         if (configNode.getNode("LightMOTD", "playercount").isVirtual()) {
 
             configNode.getNode("LightMOTD", "playercount", "max-players")
-                    .setValue(0)
-                    .setComment("The max amount of players which will be shown. Set it to 0 to disable");
+                    .setComment("The max amount of players which will be shown. Set it to 0 to disable")
+                    .setValue(0);
 
             configNode.getNode("LightMOTD", "playercount", "current-players")
-                    .setValue(0)
-                    .setComment("The current player count which will be shown. Set it to 0 to disable.");
+                    .setComment("The current player count which will be shown. Set it to 0 to disable.")
+                    .setValue(0);
+
+            configNode.getNode("LightMOTD", "playercount", "justonemore")
+                    .setComment("If this is set to true, the max playercount will always be as many players as you have + 1." +
+                            "\nmax-players should be set to 0 for this to work.")
+                    .setValue(false);
         }
 
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
@@ -117,6 +122,20 @@ public class ConfigManager {
         return txtmotd;
 
     }
+
+
+    public Boolean onejustmore() {
+
+        Boolean onemore = false;
+        try {
+            onemore = configNode.getNode("LightMOTD", "playercount", "justonemore").getBoolean();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return  onemore;
+
+    }
+
 
     public Logger getLogger() {
         return logger;

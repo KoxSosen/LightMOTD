@@ -21,9 +21,12 @@ public class ServerPinger {
 
        final int maxplayers = lightMOTD.getConfig().maxplayers();
 
+       Boolean onemorejust = lightMOTD.getConfig().onejustmore();
+
        final String motd = lightMOTD.getConfig().textmotd();
 
        final ServerPing.Builder ping = event.getPing().asBuilder();
+
 
         try {
 
@@ -37,6 +40,10 @@ public class ServerPinger {
 
            if (!motd.isEmpty()) {
                ping.description(MiniMessage.markdown().parse(motd));
+           }
+
+           if (onemorejust) {
+             ping.maximumPlayers(1 + ping.getOnlinePlayers());
            }
 
         } finally {
