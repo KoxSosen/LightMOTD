@@ -14,7 +14,7 @@ public class ServerPinger {
     }
 
     @Subscribe
-    public void onServerPing(ProxyPingEvent event) {
+    public void onServerPing(ProxyPingEvent event) { // TODO: Run the code after the first return.
 
         final ServerPing.Builder ping = event.getPing().asBuilder();
         try {
@@ -22,22 +22,16 @@ public class ServerPinger {
             if (lightMOTD.getConfig().currentplayers() == 0) {
                 return;
             }
-        } finally {
-            try {
-                ping.maximumPlayers(lightMOTD.getConfig().maxplayers());
-                if (lightMOTD.getConfig().maxplayers() == 0) {
-                    return;
-                }
-            } finally {
-                try {
-                    ping.description(MiniMessage.markdown().parse(lightMOTD.getConfig().textmotd()));
-                    if (lightMOTD.getConfig().textmotd() == null) {
-                        return;
-                    }
-                } finally {
-                    event.setPing(ping.build());
-                }
+            ping.maximumPlayers(lightMOTD.getConfig().maxplayers());
+            if (lightMOTD.getConfig().maxplayers() == 0) {
+                return;
             }
+            ping.description(MiniMessage.markdown().parse(lightMOTD.getConfig().textmotd()));
+            if (lightMOTD.getConfig().textmotd() == null) {
+                return;
+            }
+        } finally {
+            event.setPing(ping.build());
         }
     }
 }

@@ -76,9 +76,9 @@ public class ConfigManager {
         }
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
             configNode.getNode("LightMOTD", "text")
-                    .setValue("<color:#FF5555>This is the default <underlined><bold>MOTD</bold></underlined> of **LightMOTD.** /n This is a new line :P")
-                    .setComment("This is where you set the MOTD text which will be shown. Set to empty to disable it.")
-                    .setComment("It uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!. It alo accepts basic MARKDOWN features.");
+                    .setValue("<color:#FF5555>This<color:#55FF55> is the default <underlined><bold>MOTD</bold></underlined> of **LightMOTD.** \nThis is a new line :P")
+                    .setComment("This is where you set the MOTD text which will be shown. Set it to empty to disable it." +
+                            "\nIt uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!. It alo accepts basic MARKDOWN features.");
         }
     }
 
