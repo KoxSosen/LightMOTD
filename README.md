@@ -10,19 +10,21 @@ An **Upcoming** MOTD plugin for Velocity.
 
 - Change player cap.
 - Change current player count.
+- An option to set, so your player cap will always be (1 + current players).
+- Null the playercount, so the current players won't show up.
 - MiniMessage support.
 - Configurate hocon config.  
 - Very lightweight: No bloat features.
-- We only shade in MiniMessage, everything else is bundled with Velocity.
+- We only shade in MiniMessage, nothing else.
 
 #### Upcoming Features:
 
 - An option to play around with math to define the amount of players.
-- Null the playercount, so it won't even show up.
   
 #### Planned Features:
 
 - Random favicon each refresh. (can be  disabled)
+- Random MOTD each refresh.  
 - Retrive images from TheCatApi to set a random cat image as the favicon.
 
 First release: Soontm

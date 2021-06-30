@@ -73,6 +73,11 @@ public class ConfigManager {
                     .setComment("If this is set to true, the max playercount will always be as many players as you have + 1." +
                             "\nmax-players should be set to 0 for this to work.")
                     .setValue(false);
+
+            configNode.getNode("LightMOTD", "playercount", "hiddenplayers")
+                    .setComment("If this is set to true, the player count will show up az questionmarks." +
+                            "Set every option to 0, and justonemore to false for this to work.")
+                    .setValue(false);
         }
 
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
@@ -132,7 +137,19 @@ public class ConfigManager {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
-        return  onemore;
+        return onemore;
+
+    }
+
+    public Boolean hiddentheplayers() {
+
+        Boolean areplayersnull = false;
+        try {
+            areplayersnull = configNode.getNode("LightMOTD", "playercount", "hiddenplayers").getBoolean();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return areplayersnull;
 
     }
 
