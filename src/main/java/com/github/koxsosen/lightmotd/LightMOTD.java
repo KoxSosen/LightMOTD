@@ -34,7 +34,7 @@ public class LightMOTD {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         logger.info("Loading LightMOTD");
-        server.getEventManager().register(this, new ServerPinger());
+        server.getEventManager().register(this, new ServerPinger(LightMOTD.this));
         logger.info("Registered ServerPinger");
         logger.info("Loading config");
         this.config = new ConfigManager(configDirectory, "LightMOTD.conf", logger, server);

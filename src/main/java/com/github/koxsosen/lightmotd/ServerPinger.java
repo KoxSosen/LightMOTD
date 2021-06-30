@@ -6,13 +6,19 @@ import com.velocitypowered.api.proxy.server.ServerPing;
 
 public class ServerPinger {
 
+    private final LightMOTD lightMOTD;
+
+    public ServerPinger(LightMOTD lightMOTD) {
+        this.lightMOTD = lightMOTD;
+    }
+
     @Subscribe
     public void onServerPing(ProxyPingEvent event) {
 
         final ServerPing.Builder ping = event.getPing().asBuilder();
 
-        ping.onlinePlayers(new LightMOTD().getConfig().maxplayers()); // set from config
-        ping.maximumPlayers(10); // set from config
+        ping.onlinePlayers(lightMOTD.getConfig().currentplayers()); // set from config
+        ping.maximumPlayers(lightMOTD.getConfig().maxplayers()); // set from config
 
         event.setPing(ping.build());
 

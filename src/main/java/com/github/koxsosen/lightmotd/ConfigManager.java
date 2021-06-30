@@ -53,10 +53,6 @@ public class ConfigManager {
         save(defaultConf);
     }
 
-    public CommentedConfigurationNode getConfigNode() {
-        return configNode;
-    }
-
     public void saveConfig() {
         try {
             configManager.save(configNode);
