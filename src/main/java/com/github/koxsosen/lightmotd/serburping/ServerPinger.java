@@ -39,10 +39,6 @@ public class ServerPinger {
                ping.description(MiniMessage.markdown().parse(motd));
            }
 
-            if (lightMOTD.getConfig().ishidden()) {
-                ping.nullPlayers();
-            }
-
         } finally {
             event.setPing(ping.build());
         }

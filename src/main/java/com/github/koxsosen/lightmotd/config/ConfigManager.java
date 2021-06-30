@@ -68,12 +68,8 @@ public class ConfigManager {
             configNode.getNode("LightMOTD", "playercount", "current-players")
                     .setValue(0)
                     .setComment("The current player count which will be shown. Set it to 0 to disable.");
-
-            configNode.getNode("LightMOTD", "playercount", "hidden")
-                    .setValue(false)
-                    .setComment("Setting this to true will hide both the max and the current players.");
-
         }
+
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
 
             configNode.getNode("LightMOTD", "text")
@@ -83,9 +79,11 @@ public class ConfigManager {
                             "\nIt uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!." +
                             "\n It also parses the MARKDOWN syntax.");
         }
+
     }
 
     public int maxplayers() {
+
         int maxpl = 0;
         try {
             maxpl = configNode.getNode("LightMOTD", "playercount", "max-players").getInt();
@@ -93,9 +91,11 @@ public class ConfigManager {
             e.printStackTrace();
         }
         return maxpl;
+
     }
 
     public int currentplayers() {
+
         int currpl = 0;
         try {
             currpl = configNode.getNode("LightMOTD", "playercount", "current-players").getInt();
@@ -103,9 +103,11 @@ public class ConfigManager {
             e.printStackTrace();
         }
         return currpl;
+
     }
 
     public String textmotd() {
+
         String txtmotd = "";
         try {
             txtmotd = configNode.getNode("LightMOTD", "text").getString();
@@ -113,19 +115,11 @@ public class ConfigManager {
             e.printStackTrace();
         }
         return txtmotd;
-    }
 
-    public boolean ishidden() {
-        boolean hidden = false;
-        try {
-            hidden = configNode.getNode("LightMOTD", "text").getBoolean();
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-        return hidden;
     }
 
     public Logger getLogger() {
         return logger;
     }
+
 }
