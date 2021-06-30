@@ -10,12 +10,12 @@ An **Upcoming** MOTD plugin for Velocity.
 
 - Change player cap.
 - Change current player count.
-- An option to set, so your player cap will always be (1 + current players).
+- An option which allows you to set, so your player cap will always be (1 + current players).
 - Null the playercount, so the current players won't show up.
 - MiniMessage support.
 - Configurate hocon config.  
 - Very lightweight: No bloat features.
-- We only shade in MiniMessage, nothing else.
+- Only shade in MiniMessage, nothing else.
 
 #### Upcoming Features:
 
