@@ -39,7 +39,7 @@ public class ConfigManager {
         try {
             configNode = configManager.load();
             pluginConf(configName);
-            logger.info("Load da plugin");
+            logger.info("Loading the config....");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -70,12 +70,15 @@ public class ConfigManager {
             configNode.getNode("LightMOTD", "playercount", "max-players")
                     .setValue(0)
                     .setComment("The max amount of players which will be shown. Set it to 0 to disable");
+
             configNode.getNode("LightMOTD", "playercount", "current-players")
                     .setValue(0)
                     .setComment("The current player count which will be shown. Set it to 0 to disable.");
+
             configNode.getNode("LightMOTD", "playercount", "hidden")
                     .setValue(false)
                     .setComment("Setting this to true will hide both the max and the current players.");
+
         }
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
             configNode.getNode("LightMOTD", "text")
@@ -116,7 +119,8 @@ public class ConfigManager {
     }
 
     public boolean ishidden() {
-        boolean hidden = false;
+        boolean hidden;
+        hidden = false;
         try {
             hidden = configNode.getNode("LightMOTD", "text").getBoolean();
         } catch (NullPointerException e) {
