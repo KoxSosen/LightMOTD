@@ -73,6 +73,9 @@ public class ConfigManager {
             configNode.getNode("LightMOTD", "playercount", "current-players")
                     .setValue(0)
                     .setComment("The current player count which will be shown. Set it to 0 to disable.");
+            configNode.getNode("LightMOTD", "playercount", "hidden")
+                    .setValue(false)
+                    .setComment("Setting this to true will hide both the max and the current players.");
         }
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
             configNode.getNode("LightMOTD", "text")
@@ -110,6 +113,16 @@ public class ConfigManager {
             e.printStackTrace();
         }
         return txtmotd;
+    }
+
+    public boolean ishidden() {
+        boolean hidden = false;
+        try {
+            hidden = configNode.getNode("LightMOTD", "text").getBoolean();
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        return hidden;
     }
 
 
