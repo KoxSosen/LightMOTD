@@ -43,14 +43,5 @@ public class LightMOTD {
     public ConfigManager getConfig() {
         return config;
     }
-    public void doReload() {
-        try {
-            getConfig().saveConfig();
-            this.config = new ConfigManager(configDirectory, "LightMOTD.conf", logger, server);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 }
+

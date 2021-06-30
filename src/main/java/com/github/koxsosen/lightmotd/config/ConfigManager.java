@@ -1,6 +1,5 @@
 package com.github.koxsosen.lightmotd.config;
 
-
 import com.velocitypowered.api.proxy.ProxyServer;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
@@ -13,24 +12,18 @@ import java.nio.file.Path;
 
 public class ConfigManager {
 
-    private File defaultCfg;
     private final Logger logger;
-    private Path path;
-    private final ProxyServer server;
 
     Path defaultConfig;
     File defaultConf;
     CommentedConfigurationNode configNode;
     ConfigurationLoader <CommentedConfigurationNode> configManager;
 
-    public ConfigManager(Path defaultConfig, String configName, Logger logger, ProxyServer server) {
+    public ConfigManager(Path defaultConfig, String configName, Logger logger, ProxyServer proxyServer) {
         this.defaultConfig = defaultConfig;
         this.logger = logger;
-        this.server = server;
 
-        if (!defaultConfig.toFile().exists()) {
-            defaultConfig.toFile().mkdir();
-        }
+        if (!defaultConfig.toFile().exists()) defaultConfig.toFile().mkdir();
 
         defaultConf = new File(defaultConfig.toFile(), configName);
 
@@ -39,7 +32,7 @@ public class ConfigManager {
         try {
             configNode = configManager.load();
             pluginConf(configName);
-            logger.info("Loading the config....");
+            logger.info("Loading the config..");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,6 +60,7 @@ public class ConfigManager {
 
     private void pluginConf(String fileName) {
         if (configNode.getNode("LightMOTD", "playercount").isVirtual()) {
+
             configNode.getNode("LightMOTD", "playercount", "max-players")
                     .setValue(0)
                     .setComment("The max amount of players which will be shown. Set it to 0 to disable");
@@ -81,11 +75,13 @@ public class ConfigManager {
 
         }
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
+
             configNode.getNode("LightMOTD", "text")
-                    .setValue("<color:#FF5555>This<color:#55FF55> is the default <underlined><bold>MOTD</bold></underlined> of **LightMOTD.** " +
-                            "\n<reset>This is a new line :P")
-                    .setComment("This is where you set the MOTD text which will be shown. Set it to empty to disable it." +
-                            "\nIt uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!. It alo accepts basic MARKDOWN features.");
+                    .setValue("<gray>This is the default MOTD of LightMOTD</gray>" +
+                            "\n<reset><white>This is a new line :P</white>")
+                    .setComment("This is where you can set the MOTD. Set it to empty to disable it." +
+                            "\nIt uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!." +
+                            "\n It also parses the MARKDOWN syntax.");
         }
     }
 
@@ -120,8 +116,7 @@ public class ConfigManager {
     }
 
     public boolean ishidden() {
-        boolean hidden;
-        hidden = false;
+        boolean hidden = false;
         try {
             hidden = configNode.getNode("LightMOTD", "text").getBoolean();
         } catch (NullPointerException e) {
@@ -130,8 +125,7 @@ public class ConfigManager {
         return hidden;
     }
 
-
-    public void setPath(Path path) {
-        this.path = path;
+    public Logger getLogger() {
+        return logger;
     }
 }
