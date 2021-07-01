@@ -4,12 +4,14 @@
 
 ![image](https://user-images.githubusercontent.com/67807644/124130126-bad22200-da7e-11eb-85e6-9786fbf26662.png)
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/KoxSosen/LightMOTD?label=Latest%20Release)](https://github.com/KoxSosen/LightMOTD/releases/latest/)
+
 </center>
 </div>
 
 **A MOTD plugin for Velocity.**
 
-**Get the latest build:** [![Latest Build](https://github.com/KoxSosen/LightMOTD/actions/workflows/gradle.yml/badge.svg?label=Get&20the&20latest)](https://github.com/KoxSosen/LightMOTD/actions)
+[![Latest Build](https://github.com/KoxSosen/LightMOTD/actions/workflows/gradle.yml/badge.svg?label=Get&20the&20latest)](https://github.com/KoxSosen/LightMOTD/actions)
 
 #### Features:
 
