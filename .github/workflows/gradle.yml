@@ -46,7 +46,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       with:
         name: LightMOTD
-        path: build/build/libs/LightMOTD-*.jar
+        path: build/libs/LightMOTD-*.jar
 
     - name: Cleanup Gradle Cache
     # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
