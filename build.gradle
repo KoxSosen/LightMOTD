@@ -4,10 +4,7 @@ plugins {
 }
 
 group = 'com.github.koxsosen'
-version = '0.1'
-
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+version = '0.1.0'
 
 repositories {
     mavenCentral()

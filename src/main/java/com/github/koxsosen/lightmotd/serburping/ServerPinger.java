@@ -4,7 +4,9 @@ import com.github.koxsosen.lightmotd.LightMOTD;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.api.proxy.server.ServerPing;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+
 
 public class ServerPinger {
 
@@ -17,18 +19,19 @@ public class ServerPinger {
     @Subscribe
     public void onServerPing(ProxyPingEvent event) {
 
-       final int currentplayers = lightMOTD.getConfig().currentplayers();
+        final ServerPing.Builder ping = event.getPing().asBuilder();
 
-       final int maxplayers = lightMOTD.getConfig().maxplayers();
+        final int currentplayers = lightMOTD.getConfig().currentplayers();
 
-       Boolean onemorejust = lightMOTD.getConfig().onejustmore();
+        final int maxplayers = lightMOTD.getConfig().maxplayers();
 
-       Boolean nulltheplayers = lightMOTD.getConfig().hiddentheplayers();
+        Boolean onemorejust = lightMOTD.getConfig().onejustmore();
 
-       final String motd = lightMOTD.getConfig().textmotd();
+        Boolean nulltheplayers = lightMOTD.getConfig().hiddentheplayers();
 
-       final ServerPing.Builder ping = event.getPing().asBuilder();
+        final String motd = lightMOTD.getConfig().textmotd();
 
+        final Component parsed = MiniMessage.markdown().parse(motd);
 
         try {
 
@@ -37,11 +40,11 @@ public class ServerPinger {
             }
 
            if (maxplayers > 0) {
-               ping.maximumPlayers(currentplayers);
+               ping.maximumPlayers(maxplayers);
            }
 
            if (!motd.isEmpty()) {
-               ping.description(MiniMessage.markdown().parse(motd));
+               ping.description(parsed);
            }
 
            if (onemorejust) {

@@ -62,29 +62,30 @@ public class ConfigManager {
         if (configNode.getNode("LightMOTD", "playercount").isVirtual()) {
 
             configNode.getNode("LightMOTD", "playercount", "max-players")
-                    .setComment("The max amount of players which will be shown. Set it to 0 to disable")
+                    .setComment("The max amount of players which will be shown. " +
+                            "Set it to 0 to disable.")
                     .setValue(0);
 
             configNode.getNode("LightMOTD", "playercount", "current-players")
-                    .setComment("The current player count which will be shown. Set it to 0 to disable.")
+                    .setComment("The amount of players to add to your current players. " +
+                            "\nSet it to 0 to disable.")
                     .setValue(0);
 
             configNode.getNode("LightMOTD", "playercount", "justonemore")
                     .setComment("If this is set to true, the max playercount will always be as many players as you have + 1." +
-                            "\nmax-players should be set to 0 for this to work.")
+                            "\nSet it to false to disable.")
                     .setValue(false);
 
             configNode.getNode("LightMOTD", "playercount", "hiddenplayers")
-                    .setComment("If this is set to true, the player count will show up az questionmarks." +
-                            "Set every option to 0, and justonemore to false for this to work.")
+                    .setComment("If this is set to true, the player count will show up as question marks.")
                     .setValue(false);
         }
 
         if (configNode.getNode("LightMOTD", "text").isVirtual()) {
 
             configNode.getNode("LightMOTD", "text")
-                    .setValue("<gray>This is the default MOTD of LightMOTD</gray>" +
-                            "\n<reset><white>This is a new line :P</white>")
+                    .setValue("<white>This is the default MOTD of </white><#b02e26>Light<#825432>M<#80c71f>O<#b02e26>T<#825432>D<white>." +
+                            "\n<reset><gray>This is a new line :P </gray><#b02e26>R <#825432>G <#80c71f>B<reset>!.")
                     .setComment("This is where you can set the MOTD. Set it to empty to disable it." +
                             "\nIt uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!." +
                             "\n It also parses the MARKDOWN syntax.");
