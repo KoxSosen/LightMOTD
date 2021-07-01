@@ -1,6 +1,6 @@
 <div>
 <center>
-<h2> ⚡️ LightMOTD ⚡️</h2>
+<h2> ⚡️ LightMOTD ⚡ ️</h2>
 
 ![image](https://user-images.githubusercontent.com/67807644/124130126-bad22200-da7e-11eb-85e6-9786fbf26662.png)
 
@@ -9,7 +9,7 @@
 
 **A MOTD plugin for Velocity.**
 
-Get the latest build from ![Builds](https://github.com/KoxSosen/LightMOTD/actions/workflows/gradle.yml/badge.svg).
+**Get the latest build:** [![Latest Build](https://github.com/KoxSosen/LightMOTD/actions/workflows/gradle.yml/badge.svg?label=Get&20the&20latest)](https://github.com/KoxSosen/LightMOTD/actions)
 
 #### Features:
 
@@ -44,7 +44,13 @@ LightMOTD {
     text="<white>This is the default MOTD of </white><#b02e26>Light<#825432>M<#80c71f>O<#b02e26>T<#825432>D<white>.\n<reset><gray>This is a new line :P </gray><#b02e26>R <#825432>G <#80c71f>B<reset>!."
 }
 ```
+**Null the playercount:**
 
+![image](https://user-images.githubusercontent.com/67807644/124133637-5022e580-da82-11eb-97a4-e7ee0d419552.png)
+
+**JustOneMore:**
+
+![image](https://user-images.githubusercontent.com/67807644/124133930-9aa46200-da82-11eb-88b1-64e0142accc7.png)
 
 #### Upcoming Features:
 
