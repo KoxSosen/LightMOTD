@@ -50,7 +50,7 @@ LightMOTD {
 
 ![image](https://user-images.githubusercontent.com/67807644/124133637-5022e580-da82-11eb-97a4-e7ee0d419552.png)
 
-**JustOneMore:**
+**JustOneMore:** 
 
 ![image](https://user-images.githubusercontent.com/67807644/124133930-9aa46200-da82-11eb-88b1-64e0142accc7.png)
 
