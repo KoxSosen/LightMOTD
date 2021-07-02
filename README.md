@@ -8,7 +8,7 @@
 
 </center>
 </div>
-
+ 
 **A MOTD plugin for Velocity.**
 
 [![Latest Build](https://github.com/KoxSosen/LightMOTD/actions/workflows/gradle.yml/badge.svg?label=Get&20the&20latest)](https://github.com/KoxSosen/LightMOTD/actions)
