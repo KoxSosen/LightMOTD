@@ -5,7 +5,7 @@
 ![image](https://user-images.githubusercontent.com/67807644/124130126-bad22200-da7e-11eb-85e6-9786fbf26662.png)
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/KoxSosen/LightMOTD?label=Latest%20Release)](https://github.com/KoxSosen/LightMOTD/releases/latest/)
-
+ 
 </center>
 </div>
  
