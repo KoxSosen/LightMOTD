@@ -1,63 +1,59 @@
 package com.github.koxsosen.lightmotd.serburping;
 
 import com.github.koxsosen.lightmotd.LightMOTD;
+import com.velocitypowered.api.event.EventTask;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
 import com.velocitypowered.api.proxy.server.ServerPing;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 
 
 public class ServerPinger {
 
-    private final LightMOTD lightMOTD;
-
-    public ServerPinger(LightMOTD lightMOTD) {
-        this.lightMOTD = lightMOTD;
+    @Subscribe
+    public EventTask onProxyPingEvent(ProxyPingEvent e) {
+        return EventTask.async(() -> this.format(e));
     }
 
-    @Subscribe
-    public void onServerPing(ProxyPingEvent event) {
+    private void format(ProxyPingEvent e) {
 
-        final ServerPing.Builder ping = event.getPing().asBuilder();
+        final ServerPing.Builder ping = e.getPing().asBuilder();
 
-        final int currentplayers = lightMOTD.getConfig().currentplayers();
+        final int currentplayers = LightMOTD.getConfig().currentplayers();
 
-        final int maxplayers = lightMOTD.getConfig().maxplayers();
+        final int maxplayers = LightMOTD.getConfig().maxplayers();
 
-        Boolean onemorejust = lightMOTD.getConfig().onejustmore();
+        Boolean onemorejust = LightMOTD.getConfig().onejustmore();
 
-        Boolean nulltheplayers = lightMOTD.getConfig().hiddentheplayers();
+        Boolean nulltheplayers = LightMOTD.getConfig().hiddentheplayers();
 
-        final String motd = lightMOTD.getConfig().textmotd();
-
-        final Component parsed = MiniMessage.markdown().parse(motd);
+        final String motd = LightMOTD.getConfig().textmotd();
 
         try {
 
-           if (currentplayers > 0) {
-               ping.onlinePlayers(currentplayers);
+            if (currentplayers > 0) {
+            ping.onlinePlayers(currentplayers);
             }
 
-           if (maxplayers > 0) {
-               ping.maximumPlayers(maxplayers);
-           }
+            if (maxplayers > 0) {
+            ping.maximumPlayers(maxplayers);
+            }
 
-           if (!motd.isEmpty()) {
-               ping.description(parsed);
-           }
+            if (!motd.isEmpty()) {
+            ping.description(com.github.koxsosen.lightmotd.parse.AdventureParse.formatted());
+            }
 
-           if (onemorejust) {
-             ping.maximumPlayers(1 + ping.getOnlinePlayers());
-           }
+            if (onemorejust) {
+            ping.maximumPlayers(1 + ping.getOnlinePlayers());
+            }
 
-           if (nulltheplayers) {
-               ping.nullPlayers();
-           }
+            if (nulltheplayers) {
+            ping.nullPlayers();
+            }
 
-        } finally {
-            event.setPing(ping.build());
+            } finally {
+            e.setPing(ping.build());
         }
     }
-
 }
+
+

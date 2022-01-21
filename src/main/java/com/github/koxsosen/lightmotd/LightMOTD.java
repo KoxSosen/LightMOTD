@@ -24,7 +24,7 @@ public class LightMOTD {
     private final ProxyServer server;
     private final Logger logger;
     private final Path configDirectory;
-    private ConfigManager config;
+    private static ConfigManager config;
 
     @Inject
     public LightMOTD(ProxyServer server, Logger logger, @DataDirectory Path configDirectory) {
@@ -35,12 +35,12 @@ public class LightMOTD {
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
-        server.getEventManager().register(this, new ServerPinger(LightMOTD.this));
-        this.config = new ConfigManager(configDirectory, "LightMOTD.conf", logger);
+        server.getEventManager().register(this, new ServerPinger());
+        config = new ConfigManager(configDirectory, "LightMOTD.conf", logger);
         logger.info("Successfully loaded LightMOTD.");
     }
 
-    public ConfigManager getConfig() {
+    public static ConfigManager getConfig() {
         return config;
     }
 }
