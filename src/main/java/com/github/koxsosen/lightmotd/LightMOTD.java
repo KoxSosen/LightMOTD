@@ -36,7 +36,7 @@ public class LightMOTD {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         server.getEventManager().register(this, new ServerPinger(LightMOTD.this));
-        this.config = new ConfigManager(configDirectory, "LightMOTD.conf", logger, server);
+        this.config = new ConfigManager(configDirectory, "LightMOTD.conf", logger);
         logger.info("Successfully loaded LightMOTD.");
     }
 

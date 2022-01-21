@@ -1,6 +1,5 @@
 package com.github.koxsosen.lightmotd.config;
 
-import com.velocitypowered.api.proxy.ProxyServer;
 import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.hocon.HoconConfigurationLoader;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
@@ -12,16 +11,13 @@ import java.nio.file.Path;
 
 public class ConfigManager {
 
-    private final Logger logger;
-
     Path defaultConfig;
     File defaultConf;
     CommentedConfigurationNode configNode;
     ConfigurationLoader <CommentedConfigurationNode> configManager;
 
-    public ConfigManager(Path defaultConfig, String configName, Logger logger, ProxyServer proxyServer) {
+    public ConfigManager(Path defaultConfig, String configName, Logger logger) {
         this.defaultConfig = defaultConfig;
-        this.logger = logger;
 
         if (!defaultConfig.toFile().exists()) defaultConfig.toFile().mkdir();
 
@@ -31,7 +27,7 @@ public class ConfigManager {
 
         try {
             configNode = configManager.load();
-            pluginConf(configName);
+            pluginConf();
             logger.info("Loading the config..");
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +54,7 @@ public class ConfigManager {
         configManager = HoconConfigurationLoader.builder().setFile(input).build();
     }
 
-    private void pluginConf(String fileName) {
+    private void pluginConf() {
         if (configNode.getNode("LightMOTD", "playercount").isVirtual()) {
 
             configNode.getNode("LightMOTD", "playercount", "max-players")
@@ -86,9 +82,10 @@ public class ConfigManager {
             configNode.getNode("LightMOTD", "text")
                     .setValue("<white>This is the default MOTD of </white><#b02e26>Light<#825432>M<#80c71f>O<#b02e26>T<#825432>D<white>." +
                             "\n<reset><gray>This is a new line :P </gray><#b02e26>R <#825432>G <#80c71f>B<reset>!.")
-                    .setComment("This is where you can set the MOTD. Set it to empty to disable it." +
-                            "\nIt uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!." +
-                            "\n It also parses the MARKDOWN syntax.");
+                    .setComment("""
+                            This is where you can set the MOTD. Set it to empty to disable it.
+                            It uses the MiniMessage format. You can do <green>, or <#00ff00>R G B!.
+                             It also parses the MARKDOWN syntax.""");
         }
 
     }
@@ -132,7 +129,7 @@ public class ConfigManager {
 
     public Boolean onejustmore() {
 
-        Boolean onemore = false;
+        boolean onemore = false;
         try {
             onemore = configNode.getNode("LightMOTD", "playercount", "justonemore").getBoolean();
         } catch (NullPointerException e) {
@@ -144,7 +141,7 @@ public class ConfigManager {
 
     public Boolean hiddentheplayers() {
 
-        Boolean areplayersnull = false;
+        boolean areplayersnull = false;
         try {
             areplayersnull = configNode.getNode("LightMOTD", "playercount", "hiddenplayers").getBoolean();
         } catch (NullPointerException e) {
@@ -154,9 +151,5 @@ public class ConfigManager {
 
     }
 
-
-    public Logger getLogger() {
-        return logger;
-    }
 
 }
