@@ -1,6 +1,7 @@
 package com.github.koxsosen.lightmotd.serburping;
 
 import com.github.koxsosen.lightmotd.LightMOTD;
+import com.github.koxsosen.lightmotd.parse.AdventureParse;
 import com.velocitypowered.api.event.EventTask;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.proxy.ProxyPingEvent;
@@ -39,7 +40,7 @@ public class ServerPinger {
             }
 
             if (!motd.isEmpty()) {
-            ping.description(com.github.koxsosen.lightmotd.parse.AdventureParse.formatted());
+            ping.description(AdventureParse.formatted(motd));
             }
 
             if (onemorejust) {

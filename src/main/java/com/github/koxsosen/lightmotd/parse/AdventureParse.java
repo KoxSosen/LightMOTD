@@ -6,12 +6,9 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 
 public class AdventureParse {
 
+    public static Component formatted(String str) {
 
-    static String text = LightMOTD.getConfig().textmotd();
-
-    public static Component formatted() {
-
-        return MiniMessage.markdown().parse(text);
+        return MiniMessage.miniMessage().deserialize(str);
 
     }
 
