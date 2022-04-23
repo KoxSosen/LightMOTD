@@ -22,7 +22,6 @@
 - MiniMessage support.
 - Configurate hocon config.
 - Very lightweight: No bloat features.
-- Only shade in MiniMessage, nothing else.
 
 #### Config:
 
@@ -62,6 +61,6 @@ LightMOTD {
 
 - Random favicon each refresh. (can be  disabled)
 - Random MOTD each refresh.
-- Retrive images from TheCatApi to set a random cat image as the favicon.
+- Retrieve images from TheCatApi to set a random cat image as the favicon.
 
   
