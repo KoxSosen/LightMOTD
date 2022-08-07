@@ -1,6 +1,6 @@
 package com.github.koxsosen.lightmotd;
 
-import com.github.koxsosen.lightmotd.config.ConfigManager;
+import com.github.koxsosen.lightmotd.config.NewConfigManager;
 import com.github.koxsosen.lightmotd.serburping.ServerPinger;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
@@ -24,7 +24,6 @@ public class LightMOTD {
     private final ProxyServer server;
     private final Logger logger;
     private final Path configDirectory;
-    private static ConfigManager config;
 
     @Inject
     public LightMOTD(ProxyServer server, Logger logger, @DataDirectory Path configDirectory) {
@@ -36,12 +35,8 @@ public class LightMOTD {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         server.getEventManager().register(this, new ServerPinger());
-        config = new ConfigManager(configDirectory, "LightMOTD.conf", logger);
+        NewConfigManager.loadconfig(configDirectory);
         logger.info("Successfully loaded LightMOTD.");
-    }
-
-    public static ConfigManager getConfig() {
-        return config;
     }
 }
 
