@@ -16,7 +16,7 @@ public class NewConfigManager {
     // Root configuration node used to access and modify the config.
     static CommentedConfigurationNode root;
     static File conf;
-
+    Path configdirectory;
 
     public static void loadconfig(Path configdirectory) {
 
